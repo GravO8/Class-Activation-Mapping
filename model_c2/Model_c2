@@ -1,0 +1,38 @@
+Model_c2
+ - Demorou 6:36h a correr no colab e depois parou due to inactivity
+ - Arquitetura:
+  - 2 conv layers (3,3) com 16 channels
+  - 1 conv layer (3,3) com 32 channels
+  - 1 conv layer (3,3) com 256 channels
+  - GAP
+ - Adam optimizer
+ - Quando parou estava com 0.9744 de train accuracy e 0.9756 validation accuracy
+ 
+ 
+ model_c2 = tf.keras.Sequential(name = model_name_c2)
+ model_c2.add(tf.keras.layers.Input(image_shape))
+ model_c2.add(tf.keras.layers.Conv2D(filters = 16, 
+                                     kernel_size = (3,3),
+                                     activation="relu", 
+                                     padding="same", 
+                                     name="convolution_1"))
+ model_c2.add(tf.keras.layers.Conv2D(filters = 16, 
+                                     kernel_size = (3,3),
+                                     activation="relu", 
+                                     padding="same", 
+                                     name="convolution_2"))
+ model_c2.add(tf.keras.layers.Conv2D(filters = 32, 
+                                     kernel_size = (3,3),
+                                     activation="relu", 
+                                     padding="same", 
+                                     name="convolution_3"))
+ model_c2.add(tf.keras.layers.Conv2D(filters = 256, 
+                                     kernel_size = (3,3),
+                                     activation="relu", 
+                                     padding="same", 
+                                     name="convolution_4"))
+ model_c2.add(tf.keras.layers.GlobalAveragePooling2D(name = "GAP"))
+ model_c2.add(tf.keras.layers.Dense(10, 
+                                    activation='softmax', 
+                                    name='output',
+                                    use_bias = False))
